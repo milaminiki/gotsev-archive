@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C:\EXPERIMENTS\GOTSEV\DATA-LOCKED</title>
+    <style>
+        body {
+            background: url('background.homepage.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .terminal {
+            background-color: black;
+            border: 3px solid #00FFFF;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0px 0px 15px #00FFFF;
+        }  
+        .input-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .input-line span {
+            color: skyblue;
+        }
+        input {
+            background: none;
+            border: none;
+            color: #00FF00;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            width: 200px;
+            text-align: center;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .button {
+            background-color: #00ff3a;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 10px #00ff3a;
+        }
+        .button:hover {
+            background-color: #00ff3a;
+            box-shadow: 0px 0px 15px #00ff3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+       <center>
+           <h2>=== АРХИВ ===</h2>
+           <h1>==ОТКЛЮЧВАНЕ НА УМА==</h1>
+           <p>ЕКСПЕРИМЕНТАЛНИ ПРАКТИКИ</p>
+       </center> 
+        <p> >> Ограничен достъп. Само за административно ползване >> </p>
+        <div class="input-line">
+            <form onsubmit="return validateLogin(event)">
+                <br>
+                <input type="text" id="username" placeholder="ИМЕ_" onfocus="this.placeholder=''" onblur="this.placeholder='ИМЕ_'" maxlength="10">
+                <span class="blink">█</span>
+                <br>
+                <input type="password" id="password" placeholder="ГОДИНА НА РАЖДАНЕ" onfocus="this.placeholder=''" onblur="this.placeholder='ГОДИНА НА РАЖДАНЕ'" maxlength="10">
+                <span class="blink">█</span>
+                <br><br>
+                <center> 
+                    <button class="button" type="submit">ДОСТЪП</button>
+                </center>
+                <p id="message"></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function validateLogin(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        var username = document.getElementById("username").value.trim().toLowerCase();
+        var password = document.getElementById("password").value.trim();
+
+        if (username === "anton" && password === "1934") {
+            window.location.href = "asylum.version2.html"; // Redirect to main archive
+        } else if (username === "gavril" && password === "1934") {
+            window.location.href = "internal.asylum.html"; // Redirect to internal archive
+        } else {
+            alert("НЕВАЛИДНИ ДАННИ");
+        }
+    }
+</script>
+    
+<div class="clock">
+    <span id="msdos-clock"></span>
+</div>
+
+<script>
+    function updateClock() {
+        let now = new Date(); 
+
+        let year = 1990; 
+        let month = 4;   
+        let day = 7;     
+
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let seconds = now.getSeconds().toString().padStart(2, '0');
+
+        let formattedTime = `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+        document.getElementById("msdos-clock").textContent = formattedTime;
+    }
+
+    setInterval(updateClock, 1000); 
+    updateClock(); 
+</script>
+
+<style>
+    .clock {
+        font-family: 'Courier New', monospace;
+        font-size: 1.5em;
+        color: #00FF00;
+        background-color: black;
+        padding: 5px;
+        display: inline-block;
+        border: 2px solid #00FFFF;
+        box-shadow: 0px 0px 5px #00FFFF;
+         position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px; /* Adjust the size as needed */
+    font-weight: bold;
+    }
+</style>
+
+
+
+</body>
+</html>
