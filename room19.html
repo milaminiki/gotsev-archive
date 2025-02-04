@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СТАЯ 19 - ЕЛЕКТРОШОКОВА ТЕРАПИЯ</title>
+    <style>
+        body {
+            background-color: black; 
+            background-size: cover;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .terminal {
+            background-color: black;
+            border: 3px solid #00FFFF;
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0px 0px 15px #00FFFF;
+        }
+        .input-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        textarea {
+            background: none;
+            border: none;
+            color: #00FF00;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            width: 80%;
+            text-align: center;
+        }
+        .button {
+            background-color: #00ff3a;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 10px #00ff3a;
+        }
+        .button:hover {
+            background-color: #00ff3a;
+            box-shadow: 0px 0px 15px #00ff3a;
+        }
+        #output {
+            margin-top: 20px;
+            white-space: pre-line;
+            text-align: left;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            display: none;
+            background-color: black;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0px 0px 10px #00ff00;
+        }
+        
+         .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+     .dos-button {
+        background-color: black;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        border: 2px solid #00ff00;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0px 0px 8px #00ff00;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .dos-button:hover {
+        background-color: #00ff00;
+        color: black;
+        box-shadow: 0px 0px 15px #00ff00;
+    }
+    </style>
+</head>
+<body>
+    <div class="clock">
+    <span id="msdos-clock"></span>
+</div>
+
+<script>
+    function updateClock() {
+        let now = new Date(); 
+
+        let year = 1990; 
+        let month = 4;   
+        let day = 7;     
+
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let seconds = now.getSeconds().toString().padStart(2, '0');
+
+        let formattedTime = `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+        document.getElementById("msdos-clock").textContent = formattedTime;
+    }
+
+    setInterval(updateClock, 1000); 
+    updateClock(); 
+</script>
+
+<style>
+    .clock {
+        font-family: 'Courier New', monospace;
+        font-size: 1.5em;
+        color: #00FF00;
+        background-color: black;
+        padding: 5px;
+        display: inline-block;
+        border: 2px solid #00FFFF;
+        box-shadow: 0px 0px 5px #00FFFF;
+         position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px; /* Adjust the size as needed */
+    font-weight: bold;
+    }
+</style>
+<button class="dos-button" onclick="window.location.href='asylum.version2.html'">← Назад</button>
+
+    <div class="terminal">
+        <center> 
+        <h2>=== АРХИВ ===</h2>
+        <h1> ==ОТКЛЮЧВАНЕ НА УМА==</h1>
+        <p> СТАЯ 19 - ЕЛЕКТРОШОКОВА ТЕРАПИЯ </p> </center>
+<center> 
+        <p class="command">Въведете инициали на пациент и натиснете Enter:</p>
+        <p> Б.И.</p>
+        <p> И.Д.</p>
+        <p> М.Н.</p>
+        <p> Г.А.</p> </center>
+
+        <center> 
+        <span class="blink">█</span>
+        <textarea id="console" rows="2" cols="50" style="background-color: grey; color: black;" width="40%" >  </textarea> <span class="blink">█</span>  </center>
+
+    
+       <div id="output">
+    <center><h3>Резултат</h3></center>
+    <p id="output-text"></p>
+    <img id="output-image" src="" alt="Patient Drawing" style="display: none; width: 300px; margin-top: 10px;">
+</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('console').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const input = e.target.value.trim();
+                    const outputDiv = document.getElementById('output');
+                    const outputText = document.getElementById('output-text');
+                    const outputImage = document.getElementById('output-image'); // Image element
+
+                    let patientData = '';
+                    let imageSrc = ''; // Variable for the image path
+
+                    if (input === 'Б.И.') {
+                        patientData =  `
+Име на пациента: Бисер Иванов
+Диагноза: Тежко посттравматично стресово разстройство
+Проследаващ лекар: д-р Антон Гоцев; асистент: д-р Илиана Стойнова
+Терапия: Електрошокова терапия (ЕКТ)
+
+Наблюдения:
+По време на сесията пациентът крещеше неконтролируемо. След първия импулс пациентът изпадна в истерия, крещейки името на сестра си
+След виковете, сестра му, жена на име Надя Иванова, нахлу в стаята и прекъсна процедурата, заплашвайки мен и екипа
+
+ Бележки:
+---
+
+
+Изобразена когнитивна реакция след терапията:
+                        `;
+                        imageSrc = "biser_patient.png";
+                    } else if (input === 'И.Д.') {
+                        patientData = `
+Име на пациента: Иван Димитров
+Диагноза: Шизофрения с параноидни елементи
+Проследаващ лекар: д-р Антон Гоцев; асистент: д-р Илиана Стойнова
+Терапия: Електрошокова терапия (ЕКТ)
+
+Наблюдения:
+- Пациентът прояви агресия след първата сесия, обвинявайки екипа, че го „наблюдават и изтезават”
+- Повтарящи се изказвания: „Вие двамата сте един.“ 
+
+Бележки:
+Терапията бе преустановена заради риск от самонараняване
+
+
+
+                        `;
+                    
+                    } else if (input === 'М.Н.') {
+                        patientData = `
+Име на пациента: Мария Николова 
+Диагноза: Генерализирано тревожно разстройство, обсесивно-компулсивни мисли 
+Проследяващ лекар: д-р Антон Гоцев Асистент: д-р Илиана Стойнова 
+Терапия: Електрошокова терапия (ЕКТ)
+
+Сесия 1 – Нисковолтово стимулиране:
+Пациентката изпитва леко замайване и загуба на ориентация след процедурата, но не съобщава за силен дискомфорт.
+Впоследствие споделя, че се чувства „по-лека, но и странно празна“.
+
+
+Сесия 2 – Умерена стимулация
+
+Тревожността ѝ значително намалява, но възникват лека дезориентация и временни пропуски в паметта.
+
+
+Сесия 3 – Интензивна терапия
+
+След възстановяване споделя, че „не усеща тревожност, но и не усеща нищо“.
+Пациенката изглежда твърде спокойна, а гласът ѝ звучи монотонно, без емоционална вариация.
+
+
+
+Бележки:
+Пациентката демонстрира ефекта, който търсехме – премахване на тревожните мисловни модели. Въпреки това, наблюдавам неочаквано силно притъпяване на емоциите. ЕКТ успя да „рестартира“ съзнанието ѝ, но с цената на личностна промяна. Заслужава ли си този компромис?
+Ще наблюдавам как този нов „Аз“ ще се развие в следващите седмици.
+
+
+
+Изобразена когнитивна реакция след терапията:
+                        `;
+                        imageSrc = "maria_patient.png";
+                    } else if (input === 'Г.А.') {
+                        patientData = `
+Пациент: Гаврил Аспарухов
+Диагноза: неуточнена
+Проследаващ лекар: д-р Антон Гоцев
+Терапия: Електрошокова терапия
+
+Описание на пациента: 
+Пациентът е подложен на терапия с цел разбиране на ролите в идентичността му и разкриване на скрити спомени. В хода на сесиите той проявява успешно развитие.
+Наблюдения:
+- След серия от леки самоприложени електрошокове, пациентът започва да описва образи и спомени, които нямат ясен произход
+- Отговаря на въпроси преди да са зададени, създавайки усещането, че „предвижда“ разговора
+- Забележително спокойствие
+- „Аз съм отражението“
+
+
+Бележки на терапевта:
+Пациент Г.А. е отражение на моята работа. Изглежда притежава двойствено самовъзприятие, което се засилва по време на терапията. Често изглежда, че възприема собствения си образ като външен наблюдател, вместо като част от своето съзнание. Разултатите му ме плашат. Планирам приключване на сесиите и насочване към друго медицинско лице. При по-дълбоки сесии започва да говори за себе си в различен контекст.
+
+Изобразена когнитивна реакция след терапията:
+Нужно е да се анализира...
+ `;
+imageSrc = "asparuhov_patient.png";
+                    } else {
+                        patientData = 'Невалиден избор. Моля, въведете Б.И, , И.Д. , М.Н. или Г.А.';
+                        imageSrc = ''; // No image for invalid input
+                    }
+
+                    // Update the text
+                    outputText.innerText = patientData;
+
+                    // Update and display the image
+                    if (imageSrc) {
+                        outputImage.src = imageSrc;
+                        outputImage.style.display = 'block';
+                    } else {
+                        outputImage.style.display = 'none'; // Hide if no valid image
+                    }
+
+                    // Show the output section
+                    outputDiv.style.display = 'block';
+                    e.target.value = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
