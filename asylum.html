@@ -88,20 +88,31 @@
         </div>
     </div>
 
-    <script>
+      <script>
     function validateLogin(event) {
         event.preventDefault(); // Prevent form from submitting normally
 
         var username = document.getElementById("username").value.trim().toLowerCase();
         var password = document.getElementById("password").value.trim();
 
-        if (username === "anton" && password === "1934") {
-            window.location.href = "asylum.version2.html"; // Redirect to main archive
-        } else if (username === "gavril" && password === "1934") {
-            window.location.href = "internal.asylum.html"; // Redirect to internal archive
-        } else {
-            alert("НЕВАЛИДНИ ДАННИ");
+        // Create an array with all accepted usernames
+        var antonUsernames = ["anton", "антон", "Антон", "Anton", "Гоцев" , "гоцев", "gotsev"];
+        var gavrilUsernames = ["gavril", "гаврил", "Гаврил" , "Gavril"];
+
+        // Check if the username is in one of the arrays
+        if (antonUsernames.includes(username)) {
+            if (password === "1934") {
+                window.location.href = "asylum.version2.html"; // Redirect to main archive
+                return;
+            }
+        } else if (gavrilUsernames.includes(username)) {
+            if (password === "1934") {
+                window.location.href = "internal.asylum.html"; // Redirect to internal archive
+                return;
+            }
         }
+
+        alert("НЕВАЛИДНИ ДАННИ");
     }
 </script>
     
