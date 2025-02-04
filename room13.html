@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СТАЯ 13 - СЕТИВНА ДЕПРИВАЦИЯ</title>
+    <style>
+        body {
+            background-color: black; 
+            background-size: cover;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .terminal {
+            background-color: black;
+            border: 3px solid #00FFFF;
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0px 0px 15px #00FFFF;
+        }
+        .input-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        textarea {
+            background: none;
+            border: none;
+            color: #00FF00;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            width: 80%;
+            text-align: center;
+        }
+        .button {
+            background-color: #00ff3a;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 10px #00ff3a;
+        }
+        .button:hover {
+            background-color: #00ff3a;
+            box-shadow: 0px 0px 15px #00ff3a;
+        }
+        #output {
+            margin-top: 20px;
+            white-space: pre-line;
+            text-align: left;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            display: none;
+            background-color: black;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0px 0px 10px #00ff00;
+        }
+        
+         .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .dos-button {
+        background-color: black;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        border: 2px solid #00ff00;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0px 0px 8px #00ff00;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .dos-button:hover {
+        background-color: #00ff00;
+        color: black;
+        box-shadow: 0px 0px 15px #00ff00;
+    }
+    </style>
+</head>
+<body>
+    <div class="clock">
+    <span id="msdos-clock"></span>
+</div>
+
+<script>
+    function updateClock() {
+        let now = new Date(); 
+
+        let year = 1990; 
+        let month = 4;   
+        let day = 7;     
+
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let seconds = now.getSeconds().toString().padStart(2, '0');
+
+        let formattedTime = `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+        document.getElementById("msdos-clock").textContent = formattedTime;
+    }
+
+    setInterval(updateClock, 1000); 
+    updateClock(); 
+</script>
+
+<style>
+    .clock {
+        font-family: 'Courier New', monospace;
+        font-size: 1.5em;
+        color: #00FF00;
+        background-color: black;
+        padding: 5px;
+        display: inline-block;
+        border: 2px solid #00FFFF;
+        box-shadow: 0px 0px 5px #00FFFF;
+         position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px; /* Adjust the size as needed */
+    font-weight: bold;
+    }
+</style>
+<button class="dos-button" onclick="window.location.href='asylum.version2.html'">← Назад</button>
+
+    <div class="terminal">
+        <center> 
+        <h2>=== АРХИВ ===</h2>
+        <h1> ==ОТКЛЮЧВАНЕ НА УМА==</h1>
+        <p> СТАЯ 13 - СЕТИВНА ДЕПРИВАЦИЯ </p> </center>
+<center> 
+        <p class="command">Въведете инициали на пациент и натиснете Enter:</p>
+        <p> Г.А.</p>
+        <p> И.Д.</p>
+        <p> Б.И.</p>
+        <p> М.Н.</p> </center>
+
+        <center> 
+        <span class="blink">█</span>
+        <textarea id="console" rows="2" cols="50" style="background-color: grey; color: black;" width="40%" >  </textarea> <span class="blink">█</span>  </center>
+
+    
+      <div id="output">
+    <center><h3>Резултат</h3></center>
+    <p id="output-text"></p>
+    <img id="output-image" src="" alt="Patient Drawing" style="display: none; width: 300px; margin-top: 10px;">
+</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('console').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const input = e.target.value.trim();
+                    const outputDiv = document.getElementById('output');
+                    const outputText = document.getElementById('output-text');
+                    const outputImage = document.getElementById('output-image'); // Image element
+
+                    let patientData = '';
+                    let imageSrc = ''; // Variable for the image path
+
+                    if (input === 'Г.А.') {
+                        patientData = `
+Име на пациента: Гаврил Аспарухов
+Диагноза: неуточнена
+Проследяващ лекар: д-р Антон Гоцев 
+Терапия: Сетивна депривация
+
+
+Описание: 
+Пациентът е категоризиран като специален случай с повтарящи се халюцинации. Проявява необичайна осъзнатост по време на терапия, съчетана със склонност към разделяне на идентичността и самовъзприятие, което варира в различни състояния.Той избягва комуникация, освен когато е подложен на интензивна изолация.
+
+
+Наблюдения:
+- В моменти на дълбока депривация изразява мисли в трето лице, като че ли говори за себе си като за отделен субект
+- Отговаря на въпроси преди да са зададени, създавайки усещането, че „предвижда“ и знае разговора предварително
+- Пациентът систематично рисува символи (очи, спирали, кръгове) по стените на стаята. В началото изглеждаше като обикновена проекция на страха. Но в последната сесия, той започна да изписва моето име между тях
+- Пациентът няма история на насилствено поведение, но демонстрира изключителна устойчивост на методите на депривация, което е рядко
+- В рисунките му се наблюдават съвпадения със символи, изобразени от други пациенти, включително Иван Димитров и Бисер Иванов, макар да не е имало контакт между тях !! N.B.!!
+
+Вербални реакции по време на терапия:
+“Скоро ще ни върна там, където принадлежим. Тъмнината ще ни погълне напълно.” 
+„Скоро всичко ще стане ясно. Тъмнината не крие нищо от нас.“
+
+Бележки: 
+Пациент Г.А. изглежда се намира на границата между реалността и самовъзприятието. Символите му наподобяват рисунки, наблюдавани при други пациенти, но интензивността на емоционалната му реакция е уникална. Той изглежда обсебен от присъствието на „наблюдател,“ което разглежда като реално. Пациентът осъзнава, че стаята не е затвор. Тя е началото. Скоро няма да има нужда от него.
+
+                        `;
+                       imageSrc = "gavril_patient.png"; // Set correct image for Г.А.
+                    } else if (input === 'И.Д.') {
+                        patientData =  `
+Име на пациента: Иван Димитров
+Диагноза: Шизофрения с параноидни елементи
+Проследаващ лекар: д-р Антон Гоцев; асистент: д-р Илиана Стойнова
+Терапия: Сетивна депривация
+
+Описание:
+Пациент с дългогодишна анамнеза за шизофрения с параноидни елементи, характеризираща се със слухови халюцинации, изразена тревожност и епизоди на дезориентация. Възприема околната среда като заплашителна и често демонстрира подозрителност към медицинския персонал. В досието му присъстват опити за самонараняване, както и словесна агресия при терапевтични стимули. Проявява фиксация върху фигура, която нарича “Наблюдателя".
+
+Наблюдения:
+- Пациентът демонстрира повишена активност след втората минута изолация. Постоянни оплаквания за гласове, които му казват да избяга
+- Поведението му е непредсказуемо
+- След третата сесия при пациента се наблюдава драскане по стените, изписвайки повтарящи се фрази “Той е тук, той гледа.”
+
+Бележки:
+Пациентът не реагира добре на сетивна депривация – напротив, методът допълнително засилва параноидните му наклонности.
+
+
+
+Изобразена когнитивна реакция след терапията:
+
+                        `;
+                        
+                       imageSrc = "dimitrov_patient.png"; // Correct image for И.Д.
+                    } else if (input === 'Б.И.') {
+                        patientData = `
+Име на пациента: Бисер Иванов
+Диагноза: Тежко посттравматично стресово разстройство
+Проследаващ лекар: д-р Антон Гоцев; асистент: д-р Илиана Стойнова
+Терапия: Сетивна депривация
+
+
+Описание:
+Пациентът е диагностициран с тежко посттравматично стресово разстройство, отключено след преживян инцидент в юношеска възраст. Проявява нощни кошмари, изразена хиперчувствителност към външни стимули и тежка социална изолация. Пациентът не показва подобрение след прилагане на стандартни методи на терапия. В повечето сесии отказва да говори, като единствено реагира с повтарящи се фрази и изблици на страх.
+
+Наблюдения:
+- Пациентът крещи в продължение на 10 минути, молейки за светлина. Постоянно повтаря: „Не виждам Наблюдателя.“
+- Пациентът губи способност за рационална комуникация
+- След 7-часова изолация започва да говори на себе си в трето лице
+- В края на последната сесия започва да копира гласа на терапевта, което е нетипично за него
+- След края на сесията отряза малък кичур от косата си и заяви, че това е „подарък за него.“ Не уточни за кого.“
+
+Бележки:
+Пациентът е емоционално лабилен и реагира остро на сетивна депривация. Въпреки че първоначално демонстрира готовност за участие в терапията, бързо губи контрол при липса на светлина и стимули. Преживява сесиите като изключително стресови, което подсказва за неподходяща форма на лечение.Терапията е прекратена поради риск от трайни когнитивни увреждания.
+
+
+
+Изобразена когнитивна реакция след терапията:
+
+
+
+                        `;
+                        imageSrc = "ivanov_patient.png"; // Correct image for Б.И.
+                    } else if (input === 'М.Н.') {
+                        patientData = `
+Име на пациента: Мария Николова
+Диагноза: Генерализирано тревожно разстройство
+Проследаващ лекар: д-р Антон Гоцев; асистент: д-р Илиана Стойнова
+Терапия: Сетивна депривация
+
+
+Описание:
+Диагностицирана с генерализирано тревожно разстройство, пациентката страда от пристъпи на паника, хронично безпокойство и обсесивни мисли. Въпреки отчетливото повишено чувство за тревожност, пациентката откликва положително на терапевтичните методи. В рамките на сетивната депривация проявява първоначален дискомфорт, но с напредване на терапията съобщава за намалена тревожност и чувство на емоционална стабилност.
+
+
+Наблюдения:
+- Пациентът се адаптира бързо към изолацията. След третата сесия тревожността намалява с 70%
+- Успешен курс от 3 сесии
+- „За първи път от години се чувствам спокойна.“
+
+Бележки:
+Мария демонстрира стабилни резултати и висока адаптивност към терапията. В началото изпитваше леки тревожни реакции, но постепенно започна да проявява подобрение. Единствената аномалия бе свързана с трета сесия, когато заяви, че „усеща нечие двойно присъствие“ в стаята. След допълнителен анализ, този феномен беше приет като част от процеса на адаптация към депривацията и не бе отчетен като сериозно нарушение в терапията. Общо взето, се наблюдава подобрение в общото ѝ психическо състояние. Планирана е и електрошокава терапия.
+
+Изобразена когнитивна реакция след терапията:
+
+
+ `;
+                        imageSrc = "nikolova_patient.png"; // Correct image for М.Н.
+                    } else {
+                        patientData = 'Невалиден избор. Моля, въведете Г.А. , И.Д. , Б.И. или М.Н.';
+                        imageSrc = ''; // No image for invalid input
+                    }
+
+                    // Update the text
+                    outputText.innerText = patientData;
+
+                    // Update and display the image
+                    if (imageSrc) {
+                        outputImage.src = imageSrc;
+                        outputImage.style.display = 'block';
+                    } else {
+                        outputImage.style.display = 'none'; // Hide if no valid image
+                    }
+
+                    // Show the output section
+                    outputDiv.style.display = 'block';
+                    e.target.value = '';
+                }
+            });
+        });
+    </script>
+    
+
+</body>
+</html>

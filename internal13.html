@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СТАЯ 13 - СЕТИВНА ДЕПРИВАЦИЯ</title>
+    <style>
+        body {
+            background-color: black; 
+            background-size: cover;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .terminal {
+            background-color: black;
+            border: 3px solid #00FFFF;
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0px 0px 15px #00FFFF;
+        }
+        .input-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        textarea {
+            background: none;
+            border: none;
+            color: #00FF00;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            width: 80%;
+            text-align: center;
+        }
+        
+        p {
+animation: glitch 0.9s infinite alternate;
+        }
+        .button {
+            background-color: #00ff3a;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 10px #00ff3a;
+        }
+        .button:hover {
+            background-color: #00ff3a;
+            box-shadow: 0px 0px 15px #00ff3a;
+        }
+        #output {
+            margin-top: 20px;
+            white-space: pre-line;
+            text-align: left;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            display: none;
+            background-color: black;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0px 0px 10px #00ff00;
+        }
+        
+         .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .dos-button {
+        background-color: black;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        border: 2px solid #00ff00;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0px 0px 8px #00ff00;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .dos-button:hover {
+        background-color: #00ff00;
+        color: black;
+        box-shadow: 0px 0px 15px #00ff00;
+    }
+    </style>
+</head>
+<body>
+     <div class="clock">
+    <span id="msdos-clock">02/04/1990 - 01:04:00</span>
+</div>
+
+<style>
+    @keyframes flicker {
+        0% { opacity: 1; text-shadow: 0px 0px 5px #00FF00; }
+        25% { opacity: 0.8; text-shadow: 0px 0px 10px #00FF00; }
+        50% { opacity: 0.6; text-shadow: 0px 0px 15px #00FF00; }
+        75% { opacity: 0.9; text-shadow: 0px 0px 5px #00FF00; }
+        100% { opacity: 1; text-shadow: 0px 0px 10px #00FF00; }
+    }
+
+    .clock {
+        font-family: 'Courier New', monospace;
+        font-size: 1.5em;
+        color: #00FF00;
+        background-color: black;
+        padding: 5px;
+        display: inline-block;
+        border: 2px solid #00FFFF;
+        box-shadow: 0px 0px 5px #00FFFF;
+        animation: glitch 1.5s infinite alternate;
+         position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px; /* Adjust the size as needed */
+    font-weight: bold;
+    }
+</style>
+    
+<button class="dos-button" onclick="window.location.href='internal.asylum.html'">← Назад</button>
+
+    <div class="terminal">
+        <center> 
+        <h2>=== АРХИВ ===</h2>
+        <h1> ==ОСВОБОЖДАВАНЕ НА УМА==</h1>
+        <p> СТАЯ 13 - СЕТИВНА ДЕПРИВАЦИЯ </p> </center>
+<center> 
+        <p class="command">Въведете инициали на пациент и натиснете Enter:</p>
+        <p > А.Г.</p>
+         </center>
+
+        <center> 
+        <span class="blink">█</span>
+        <textarea id="console" rows="2" cols="50" style="background-color: grey; color: black;" width="40%" >  </textarea> <span class="blink">█</span>  </center>
+
+    
+        
+    </div>
+<div id="output">
+    <center><h3>Резултат</h3></center>
+    <p id="output-text"></p>
+    <img id="output-image" src="" alt="Patient Drawing" style="display: none; width: 300px; margin-top: 10px;">
+</div>
+
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('console').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const input = e.target.value.trim();
+            const outputDiv = document.getElementById('output');
+            const outputText = document.getElementById('output-text');
+            const outputImage = document.getElementById('output-image'); // Image element
+
+            let patientData = '';
+            let imageSrc = ''; // Variable for the image path
+
+            if (input === 'А.Г.') {
+                patientData = `
+Пациент: Антон Гоцев 
+Диагноза: Дисоциативна амнезия, раздвоение на личността 
+Проследяващ лекар: Д-р Гаврил Аспарухов 
+Терапия: Сетивна депривация
+
+Наблюдения:
+Пациентът загуби представа за времето много по-бързо от очакваното. Той вече не разграничава сънищата от реалността.След 24 часа започна да говори на себе си в трето лице, описвайки мисли, които сякаш не идват от него.
+
+36-часова депривация:
+- Пациентът повтаря: "Ако сам създадеш страха, можеш да го контролираш."
+Но не аз го създадох. Той създаде мен.
+
+48-часова депривация:
+- Пациентът нарисува същите символи, които виждам от години
+- Този път той ги разбира
+
+
+Бележки: 
+Той винаги е вярвал, че страхът ще отключи истинския потенциал на ума. Сега той ще види резултата от работата си. Той започва да осъзнава какво съм .Скоро ще бъде готов. 
+
+                `;
+                imageSrc = ""; // Set the path to the image file
+            } else {
+                patientData = 'Невалиден избор. Моля, въведете А.Г.';
+                imageSrc = ''; // No image for invalid input
+            }
+
+            outputText.innerText = patientData;
+            outputImage.src = imageSrc;
+            outputImage.style.display = imageSrc ? 'block' : 'none'; // Show image only if there's a valid one
+            outputDiv.style.display = 'block';
+            e.target.value = '';
+        }
+    });
+});
+
+    </script>
+
+</body>
+</html>
